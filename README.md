@@ -65,7 +65,9 @@ convertserver 将 ID→名称 映射预加载到内存 (~23GB)，后续查询直
 
 ```bash
 cd /path/to/convertserver
-make
+mkdir build && cd build
+cmake ..
+make -j$(nproc)
 ```
 
 ### 2. 启动服务
@@ -114,7 +116,8 @@ pkill -f convertserver
 
 ```
 convertserver/
-├── Makefile                # 编译配置
+├── CMakeLists.txt          # CMake 编译配置
+├── Makefile                # 简化编译脚本
 ├── README.md               # 本文档
 └── src/
     ├── convertserver.cpp   # 服务端 (~285行)
