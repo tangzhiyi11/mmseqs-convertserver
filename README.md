@@ -126,8 +126,24 @@ convertserver/
 
 ## 测试
 
+### 完整流程测试
+
 ```bash
-# 测试服务是否正常
+# 终端1: 启动服务 (先确保已编译)
+./convertserver /path/to/targetDB.lookup /tmp/convertserver.sock
+
+# 终端2: 使用客户端转换结果
+./convertalis-fast input.m8 output.m8 --socket-path /tmp/convertserver.sock
+
+# 测试完成后关闭服务
+pkill -f convertserver
+```
+
+### 协议调试 (可选)
+
+直接通过 Unix Socket 测试服务协议：
+
+```bash
 python3 << 'EOF'
 import socket
 sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
@@ -137,11 +153,11 @@ sock.connect("/tmp/convertserver.sock")
 sock.send(b"PING\n")
 print("PING:", sock.recv(1024).decode().strip())
 
-# STAT 测试
+# STAT 测试 (查看已加载的序列数量)
 sock.send(b"STAT\n")
 print("STAT:", sock.recv(1024).decode().strip())
 
-# GET 测试
+# GET 测试 (查询 ID=0 的序列名称)
 sock.send(b"GET 0\n")
 print("GET 0:", sock.recv(1024).decode().strip())
 
