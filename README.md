@@ -64,7 +64,7 @@ convertserver 将 ID→名称 映射预加载到内存 (~23GB)，后续查询直
 ### 1. 编译
 
 ```bash
-cd /afs-a3-weight-share/tangzhiyi/muxi_mmseqs/convertserver
+cd /path/to/convertserver
 make
 ```
 
@@ -72,10 +72,10 @@ make
 
 ```bash
 # 后台启动 (加载 5 亿条记录约需 73s，内存 ~23GB)
-./convertserver /afs-a3-weight-share/tangzhiyi/muxi_mmseqs/data/gpudb_test/realDB_padded.lookup /tmp/convertserver.sock &
+./convertserver /path/to/targetDB.lookup /tmp/convertserver.sock &
 
 # 查看启动日志
-# [INFO] Loading lookup file: .../realDB_padded.lookup
+# [INFO] Loading lookup file: .../targetDB.lookup
 # [INFO] File size: 19.1112 GB
 # [INFO] Loaded 505847454 entries in 73s
 # [INFO] Estimated memory: ~23.5554 GB
@@ -155,3 +155,7 @@ EOF
 | lookup 加载 | 每次运行 | 服务启动时一次 |
 | 耗时 | 39s | 8ms |
 | 内存 | 临时 ~45GB | 服务常驻 ~23GB |
+
+## 文档
+
+- [设计文档](./convertserver_design_document.md) - 详细的架构设计与实现说明

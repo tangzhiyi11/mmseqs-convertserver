@@ -363,7 +363,7 @@ PROT_000002 Ribosomal protein n=2 Tax=... TaxID=...
 
 字段说明:
 - 第1列: MMseqs2 内部序列 ID (uint32_t)
-- 第2列: 原始序列名称 (如 UniRef ID)
+- 第2列: 原始序列名称 (如序列ID)
 - 第3列: 来源集 ID (多个输入文件时区分来源)
 ```
 
