@@ -139,7 +139,7 @@ convertserver/
 pkill -f convertserver
 ```
 
-### 协议调试 (可选)
+### 协议调试
 
 直接通过 Unix Socket 测试服务协议：
 
